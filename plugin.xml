@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-android-geolocation" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>GeoLocationPlugin</name>
+    <js-module name="GeoLocationPlugin" src="www/GeoLocationPlugin.js">
+        <clobbers target="geolocation" />
+    </js-module>
+    <platform name="android">
+    	<framework src="src/android/plugingradle.gradle" custom="true" type="gradleReference"/>
+    	<config-file target="config.xml" parent="/*">
+    		<feature name="GeoLocationPlugin">
+    			<param name="android-package"
+    				value="com.geolocation.geolocationplugin.GeoLocationPlugin"/>
+    		</feature>
+    	</config-file>
+    	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+    		<service android:name="com.geolocation.geolocationplugin.GeoLocService"/>
+    	</config-file>
+    	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+    		<activity android:name="com.geolocation.geolocationplugin.DBActivity" android:theme="@style/AppTheme.NoActionBar"/>
+    	</config-file>
+    	<config-file target="AndroidManifest.xml" parent="/manifest">
+    		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    	</config-file>
+    	<source-file src="src/android/com/geolocation/geolocationplugin/GeoLocationPlugin.java"
+    		target-dir="src/com/geolocation/geolocationplugin"/>
+    	<source-file src="src/android/com/geolocation/geolocationplugin/GeoLocService.java"
+    		target-dir="src/com/geolocation/geolocationplugin"/>
+    	<source-file src="src/android/com/geolocation/geolocationplugin/DistanceCalculator.java"
+    		target-dir="src/com/geolocation/geolocationplugin"/>
+    	<source-file src="src/android/com/geolocation/geolocationplugin/LocationsDbContract.java"
+    		target-dir="src/com/geolocation/geolocationplugin/"/>
+    	<source-file src="src/android/com/geolocation/geolocationplugin/LocationsDbHelper.java"
+    		target-dir="src/com/geolocation/geolocationplugin" />
+    	<source-file src="src/android/com/geolocation/geolocationplugin/DBActivity.java"
+    		target-dir="src/com/geolocation/geolocationplugin" />
+    	<source-file src="src/android/com/geolocation/geolocationplugin/LocRVAdapter.java"
+    		target-dir="src/com/geolocation/geolocationplugin" />
+       	<source-file src="src/android/com/geolocation/geolocationplugin/LocModel.java"
+    		target-dir="src/com/geolocation/geolocationplugin" /> 	
+    	<source-file src="src/android/activity_database.xml" target-dir="res/layout"/>
+    	<source-file src="src/android/styles.xml" target-dir="res/values"/>
+    	<source-file src="src/android/single_element.xml" target-dir="res/layout"/>
+    	<source-file src="src/android/menu_main.xml" target-dir="res/menu"/>
+    </platform>
+</plugin>
